@@ -1,14 +1,6 @@
 import React, { Component } from 'react'
 import './Form.scss';
 
-const validarEmail = (email) => {
-    if(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(email)){
-        return true;
-    }else{
-        return false;
-    }
-}
-
 
 export default class Form extends Component {
     constructor(props) {
@@ -32,7 +24,7 @@ export default class Form extends Component {
         
         const dataForm = new FormData(event.target);
 
-        if (dataForm.get('nombre') !== '' && dataForm.get('telefono') !== '' && dataForm.get('email') !== '' && dataForm.get('mensaje') !== '' && validarEmail(dataForm.get('email'))) {
+        if (dataForm.get('nombre') !== '' && dataForm.get('telefono') !== '' && dataForm.get('email') !== '' && dataForm.get('mensaje') !== '' ) {
             this.setState({
                 loading: true
             }); 
@@ -102,15 +94,9 @@ export default class Form extends Component {
                 });
             }
         }else if (campo.name === 'email'){
-            if (validarEmail(campo.value)) {
                 this.setState({
                     [campo.name]: 'uk-input uk-form-width-large uk-form-success'
                 });
-            }else{
-                this.setState({
-                    [campo.name]: 'uk-input uk-form-width-large uk-form-danger'
-                });
-            }
         }else{
             if (campo.value === '') {
                 this.setState({
